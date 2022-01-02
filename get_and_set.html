@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
     <script type="text/javascript" src="simcir.js"></script>
     <link rel="stylesheet" type="text/css" href="simcir.css" />
     <script type="text/javascript" src="simcir-basicset.js"></script>
@@ -20,20 +23,111 @@ $(function() {
         $simcir.find('.simcir-workspace') ).text();
   };
   var setCircuitData = function(data) {
-    $simcir.children().remove();
     $s.setupSimcir($simcir, JSON.parse(data) );
   };
 
   // button click events
   $('#getDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#dataArea').val() );
+    $('#backup1Area').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
     $('#dataArea').val(getCircuitData() );
   });
+  $('#backup1DataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#backup1Area').val() );
+    $('#dataArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+
+  });
+
+
   $('#setDataBtn').click(function() {
+    $('#backup2Area').val(getCircuitData() );
     setCircuitData($('#dataArea').val() );
+  });
+  $('#backup2DataBtn').click(function() {
+    setCircuitData($('#backup2Area').val() );
+  });
+
+
+
+
+
+
+  //switcher
+  $('#copyfromsubDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#subArea').val() );
+    $('#dataArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+  });
+
+  $('#copyfrommainDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#dataArea').val() );
+    $('#subArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+  });
+
+  $('#switchDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#dataArea').val() );
+    $('#temp2Area').val(getCircuitData() );
+    setCircuitData($('#subArea').val() );
+    $('#dataArea').val(getCircuitData() );
+    setCircuitData($('#temp2Area').val() );
+    $('#subArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+  });
+
+
+
+
+//SUB BUTTON
+
+  $('#getsubDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#subArea').val() );
+    $('#backup1subArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+    $('#subArea').val(getCircuitData() );
+  });
+
+  $('#backup1subDataBtn').click(function() {
+    $('#tempArea').val(getCircuitData() );
+    setCircuitData($('#backup1subArea').val() );
+    $('#subArea').val(getCircuitData() );
+    setCircuitData($('#tempArea').val() );
+
+  });
+
+
+  $('#setsubDataBtn').click(function() {
+    $('#backup2subArea').val(getCircuitData() );
+    setCircuitData($('#subArea').val() );
+  });
+
+  $('#backup2subDataBtn').click(function() {
+    setCircuitData($('#backup2subArea').val() );
+  });
+
+
+
+
+
+
+
+  $('#defaultDataBtn').click(function() {
+    setCircuitData($('#defaultArea').val() );
+  });
+  $('#clearDataBtn').click(function() {
+    setCircuitData($('#clearArea').val() );
   });
 
   // load default (just specifies circuit size).
-  setCircuitData('{ "width":600, "height":200 }');
+  setCircuitData($('#dataArea').val(),'{ "width":2100, "height":830 }');
 });
     </script>
     <title></title>
@@ -42,8 +136,338 @@ $(function() {
     <div id="mySimcir"></div>
     <div>
       <button id="getDataBtn">v get data v</button>
+      <button id="backup1DataBtn">vv get data BEFORE get data vv</button>
       <button id="setDataBtn">^ set data ^</button>
+      <button id="backup2DataBtn">^^ set data BEFORE set data ^^</button>
+      <p></p>
+      <button id="copyfromsubDataBtn">sub -> main</button>
+      <button id="copyfrommainDataBtn">main -> sub</button>
+      <button id="switchDataBtn">switch</button>
+      <button id="defaultDataBtn">= set default =</button>
+      <button id="clearDataBtn">- clear all -</button>
+      <p></p>
+      <button id="getsubDataBtn">v get data TO SUB v</button>
+      <button id="backup1subDataBtn">vv get data BEFORE get data TO SUB vv</button>
+      <button id="setsubDataBtn">^ set data FROM SUB ^</button>
+      <button id="backup2subDataBtn">^^ set data BEFORE set data FROM SUB ^^</button>
     </div>
-    <textarea id="dataArea" style="width:600px; height:200px;"></textarea>
+    <textarea id="dataArea" style="width:900px; height:900px;">{
+      "width":2100,
+      "height":830,
+      "showToolbox":true,
+      "toolbox":[
+        {"type":"In"},
+        {"type":"Out"},
+        {"type":"Joint"},
+        {"type":"DC"},
+        {"type":"LED"},
+        {"type":"PushOff"},
+        {"type":"PushOn"},
+        {"type":"Toggle"},
+        {"type":"BUF"},
+        {"type":"NOT"},
+        {"type":"AND"},
+        {"type":"NAND"},
+        {"type":"OR"},
+        {"type":"NOR"},
+        {"type":"XOR"},
+        {"type":"XNOR"},
+        {"type":"OSC"},
+        {"type":"7seg"},
+        {"type":"16seg"},
+        {"type":"4bit7seg"},
+        {"type":"RotaryEncoder"},
+        {"type":"BusIn"},
+        {"type":"BusOut"},
+        {"type":"RS-FF"},
+        {"type":"JK-FF"},
+        {"type":"T-FF"},
+        {"type":"D-FF"},
+        {"type":"8bitCounter"},
+        {"type":"HalfAdder"},
+        {"type":"FullAdder"},
+        {"type":"4bitAdder"},
+        {"type":"2to4BinaryDecoder"},
+        {"type":"3to8BinaryDecoder"},
+        {"type":"4to16BinaryDecoder"}
+      ],
+      "devices":[
+        {"type":"Toggle","id":"dev0","x":240,"y":732,"label":"Input C","state":{"on":false}},
+        {"type":"Toggle","id":"dev1","x":184,"y":732,"label":"Input B","state":{"on":false}},
+        {"type":"Toggle","id":"dev2","x":288,"y":732,"label":"Input D","state":{"on":false}},
+        {"type":"Toggle","id":"dev3","x":184,"y":788,"label":"Input F","state":{"on":false}},
+        {"type":"Toggle","id":"dev4","x":240,"y":788,"label":"Input G","state":{"on":false}},
+        {"type":"Toggle","id":"dev5","x":288,"y":788,"label":"Input H","state":{"on":false}},
+        {"type":"Toggle","id":"dev6","x":136,"y":732,"label":"Input A","state":{"on":false}},
+        {"type":"Toggle","id":"dev7","x":136,"y":788,"label":"Input E","state":{"on":false}},
+        {"type":"NOT","id":"dev8","x":356,"y":732,"label":"NOT"},
+        {"type":"NOT","id":"dev9","x":410,"y":732,"label":"NOT"},
+        {"type":"NOT","id":"dev10","x":356,"y":788,"label":"NOT"},
+        {"type":"NOT","id":"dev11","x":410,"y":788,"label":"NOT"},
+        {"type":"AND","id":"dev12","x":480,"y":732,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev13","x":530,"y":732,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev14","x":480,"y":788,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev15","x":530,"y":788,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev16","x":580,"y":732,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev17","x":580,"y":788,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev18","x":630,"y":732,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev19","x":630,"y":788,"label":"AND","numInputs":"4"},
+        {"type":"OR","id":"dev20","x":700,"y":732,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev21","x":700,"y":788,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev22","x":750,"y":732,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev23","x":750,"y":788,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev24","x":800,"y":732,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev25","x":800,"y":788,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev26","x":850,"y":732,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev27","x":850,"y":788,"label":"OR","numInputs":"4"},
+        {"type":"DC","id":"dev28","x":16,"y":732,"label":"DC"},
+        {"type":"LED","id":"dev29","x":70,"y":732,"label":"LED"},
+        {"type":"DC","id":"dev30","x":16,"y":788,"label":"DC"},
+        {"type":"LED","id":"dev31","x":70,"y":788,"label":"LED"},
+        {"type":"NAND","id":"dev32","x":940,"y":732,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev33","x":940,"y":788,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev34","x":990,"y":732,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev35","x":990,"y":788,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev36","x":1040,"y":732,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev37","x":1040,"y":788,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev38","x":1090,"y":732,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev39","x":1090,"y":788,"label":"NAND","numInputs":"4"},
+        {"type":"NOR","id":"dev40","x":1160,"y":732,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev41","x":1160,"y":788,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev42","x":1210,"y":732,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev43","x":1210,"y":788,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev44","x":1260,"y":732,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev45","x":1260,"y":788,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev46","x":1310,"y":732,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev47","x":1310,"y":788,"label":"NOR","numInputs":"4"},
+        {"type":"XOR","id":"dev48","x":1380,"y":732,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev49","x":1430,"y":732,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev50","x":1380,"y":788,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev51","x":1430,"y":788,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev52","x":1480,"y":732,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev53","x":1530,"y":732,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev54","x":1480,"y":788,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev55","x":1530,"y":788,"label":"XOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev56","x":1600,"y":732,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev57","x":1600,"y":788,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev58","x":1650,"y":732,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev59","x":1650,"y":788,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev60","x":1700,"y":732,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev61","x":1700,"y":788,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev62","x":1750,"y":732,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev63","x":1750,"y":788,"label":"XNOR","numInputs":"4"}
+      ],
+      "connectors":[
+      ]
+    }</textarea>
+
+    <textarea id="defaultArea" style="width:0px; height:0px;">{
+      "width":2100,
+      "height":830,
+      "showToolbox":true,
+      "toolbox":[
+        {"type":"In"},
+        {"type":"Out"},
+        {"type":"Joint"},
+        {"type":"DC"},
+        {"type":"LED"},
+        {"type":"PushOff"},
+        {"type":"PushOn"},
+        {"type":"Toggle"},
+        {"type":"BUF"},
+        {"type":"NOT"},
+        {"type":"AND"},
+        {"type":"NAND"},
+        {"type":"OR"},
+        {"type":"NOR"},
+        {"type":"XOR"},
+        {"type":"XNOR"},
+        {"type":"OSC"},
+        {"type":"7seg"},
+        {"type":"16seg"},
+        {"type":"4bit7seg"},
+        {"type":"RotaryEncoder"},
+        {"type":"BusIn"},
+        {"type":"BusOut"},
+        {"type":"RS-FF"},
+        {"type":"JK-FF"},
+        {"type":"T-FF"},
+        {"type":"D-FF"},
+        {"type":"8bitCounter"},
+        {"type":"HalfAdder"},
+        {"type":"FullAdder"},
+        {"type":"4bitAdder"},
+        {"type":"2to4BinaryDecoder"},
+        {"type":"3to8BinaryDecoder"},
+        {"type":"4to16BinaryDecoder"}
+      ],
+      "devices":[
+        {"type":"Toggle","id":"dev0","x":240,"y":732,"label":"Input C","state":{"on":false}},
+        {"type":"Toggle","id":"dev1","x":184,"y":732,"label":"Input B","state":{"on":false}},
+        {"type":"Toggle","id":"dev2","x":288,"y":732,"label":"Input D","state":{"on":false}},
+        {"type":"Toggle","id":"dev3","x":184,"y":788,"label":"Input F","state":{"on":false}},
+        {"type":"Toggle","id":"dev4","x":240,"y":788,"label":"Input G","state":{"on":false}},
+        {"type":"Toggle","id":"dev5","x":288,"y":788,"label":"Input H","state":{"on":false}},
+        {"type":"Toggle","id":"dev6","x":136,"y":732,"label":"Input A","state":{"on":false}},
+        {"type":"Toggle","id":"dev7","x":136,"y":788,"label":"Input E","state":{"on":false}},
+        {"type":"NOT","id":"dev8","x":356,"y":732,"label":"NOT"},
+        {"type":"NOT","id":"dev9","x":410,"y":732,"label":"NOT"},
+        {"type":"NOT","id":"dev10","x":356,"y":788,"label":"NOT"},
+        {"type":"NOT","id":"dev11","x":410,"y":788,"label":"NOT"},
+        {"type":"AND","id":"dev12","x":480,"y":732,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev13","x":530,"y":732,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev14","x":480,"y":788,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev15","x":530,"y":788,"label":"AND","numInputs":"3"},
+        {"type":"AND","id":"dev16","x":580,"y":732,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev17","x":580,"y":788,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev18","x":630,"y":732,"label":"AND","numInputs":"4"},
+        {"type":"AND","id":"dev19","x":630,"y":788,"label":"AND","numInputs":"4"},
+        {"type":"OR","id":"dev20","x":700,"y":732,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev21","x":700,"y":788,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev22","x":750,"y":732,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev23","x":750,"y":788,"label":"OR","numInputs":"3"},
+        {"type":"OR","id":"dev24","x":800,"y":732,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev25","x":800,"y":788,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev26","x":850,"y":732,"label":"OR","numInputs":"4"},
+        {"type":"OR","id":"dev27","x":850,"y":788,"label":"OR","numInputs":"4"},
+        {"type":"DC","id":"dev28","x":16,"y":732,"label":"DC"},
+        {"type":"LED","id":"dev29","x":70,"y":732,"label":"LED"},
+        {"type":"DC","id":"dev30","x":16,"y":788,"label":"DC"},
+        {"type":"LED","id":"dev31","x":70,"y":788,"label":"LED"},
+        {"type":"NAND","id":"dev32","x":940,"y":732,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev33","x":940,"y":788,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev34","x":990,"y":732,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev35","x":990,"y":788,"label":"NAND","numInputs":"3"},
+        {"type":"NAND","id":"dev36","x":1040,"y":732,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev37","x":1040,"y":788,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev38","x":1090,"y":732,"label":"NAND","numInputs":"4"},
+        {"type":"NAND","id":"dev39","x":1090,"y":788,"label":"NAND","numInputs":"4"},
+        {"type":"NOR","id":"dev40","x":1160,"y":732,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev41","x":1160,"y":788,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev42","x":1210,"y":732,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev43","x":1210,"y":788,"label":"NOR","numInputs":"3"},
+        {"type":"NOR","id":"dev44","x":1260,"y":732,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev45","x":1260,"y":788,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev46","x":1310,"y":732,"label":"NOR","numInputs":"4"},
+        {"type":"NOR","id":"dev47","x":1310,"y":788,"label":"NOR","numInputs":"4"},
+        {"type":"XOR","id":"dev48","x":1380,"y":732,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev49","x":1430,"y":732,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev50","x":1380,"y":788,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev51","x":1430,"y":788,"label":"XOR","numInputs":"3"},
+        {"type":"XOR","id":"dev52","x":1480,"y":732,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev53","x":1530,"y":732,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev54","x":1480,"y":788,"label":"XOR","numInputs":"4"},
+        {"type":"XOR","id":"dev55","x":1530,"y":788,"label":"XOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev56","x":1600,"y":732,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev57","x":1600,"y":788,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev58","x":1650,"y":732,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev59","x":1650,"y":788,"label":"XNOR","numInputs":"3"},
+        {"type":"XNOR","id":"dev60","x":1700,"y":732,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev61","x":1700,"y":788,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev62","x":1750,"y":732,"label":"XNOR","numInputs":"4"},
+        {"type":"XNOR","id":"dev63","x":1750,"y":788,"label":"XNOR","numInputs":"4"}
+      ],
+      "connectors":[
+      ]
+    }</textarea>
+
+    <textarea id="clearArea" style="width:0px; height:0px;">{
+      "width":2100,
+      "height":830,
+      "showToolbox":true,
+      "toolbox":[
+        {"type":"In"},
+        {"type":"Out"},
+        {"type":"Joint"},
+        {"type":"DC"},
+        {"type":"LED"},
+        {"type":"PushOff"},
+        {"type":"PushOn"},
+        {"type":"Toggle"},
+        {"type":"BUF"},
+        {"type":"NOT"},
+        {"type":"AND"},
+        {"type":"NAND"},
+        {"type":"OR"},
+        {"type":"NOR"},
+        {"type":"XOR"},
+        {"type":"XNOR"},
+        {"type":"OSC"},
+        {"type":"7seg"},
+        {"type":"16seg"},
+        {"type":"4bit7seg"},
+        {"type":"RotaryEncoder"},
+        {"type":"BusIn"},
+        {"type":"BusOut"},
+        {"type":"RS-FF"},
+        {"type":"JK-FF"},
+        {"type":"T-FF"},
+        {"type":"D-FF"},
+        {"type":"8bitCounter"},
+        {"type":"HalfAdder"},
+        {"type":"FullAdder"},
+        {"type":"4bitAdder"},
+        {"type":"2to4BinaryDecoder"},
+        {"type":"3to8BinaryDecoder"},
+        {"type":"4to16BinaryDecoder"}
+      ],
+      "devices":[
+      ],
+      "connectors":[
+      ]
+    }</textarea>
+
+    <textarea id="backup1Area" style="width:0px; height:0px;"></textarea>
+    <textarea id="backup2Area" style="width:0px; height:0px;"></textarea>
+    <textarea id="tempArea" style="width:0px; height:0px;"></textarea>
+    <textarea id="temp2Area" style="width:0px; height:0px;"></textarea>
+
+    <textarea id="subArea" style="width:700px; height:900px;">{
+      "width":2100,
+      "height":830,
+      "showToolbox":true,
+      "toolbox":[
+        {"type":"In"},
+        {"type":"Out"},
+        {"type":"Joint"},
+        {"type":"DC"},
+        {"type":"LED"},
+        {"type":"PushOff"},
+        {"type":"PushOn"},
+        {"type":"Toggle"},
+        {"type":"BUF"},
+        {"type":"NOT"},
+        {"type":"AND"},
+        {"type":"NAND"},
+        {"type":"OR"},
+        {"type":"NOR"},
+        {"type":"XOR"},
+        {"type":"XNOR"},
+        {"type":"OSC"},
+        {"type":"7seg"},
+        {"type":"16seg"},
+        {"type":"4bit7seg"},
+        {"type":"RotaryEncoder"},
+        {"type":"BusIn"},
+        {"type":"BusOut"},
+        {"type":"RS-FF"},
+        {"type":"JK-FF"},
+        {"type":"T-FF"},
+        {"type":"D-FF"},
+        {"type":"8bitCounter"},
+        {"type":"HalfAdder"},
+        {"type":"FullAdder"},
+        {"type":"4bitAdder"},
+        {"type":"2to4BinaryDecoder"},
+        {"type":"3to8BinaryDecoder"},
+        {"type":"4to16BinaryDecoder"}
+      ],
+      "devices":[
+      ],
+      "connectors":[
+      ]
+    }</textarea>
+    <textarea id="backup1subArea" style="width:0px; height:0px;"></textarea>
+    <textarea id="backup2subArea" style="width:0px; height:0px;"></textarea>
   </body>
 </html>
