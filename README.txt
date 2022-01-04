@@ -23,7 +23,7 @@ Licensed under the MIT license:
 
 -- System Requirements
 
-Web browser that supports HTML5
+Web browser that supports HTML5 (Full HD or higher resolution is recommended.)
 
 -- Contents
 
