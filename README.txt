@@ -37,4 +37,4 @@ simcir-library.js    -- Simcir library javascript
                         (optional, requires basicset)
 sample.html          -- sample of live circuit
 blank.html           -- blank template
-get_and_set.html     -- sample that get and set a circuit directly
+index.html     -- sample that get and set a circuit directly (renamed from " get_and_set.html ".)
