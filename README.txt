@@ -1,8 +1,10 @@
 SimcirJS-Web
 
+Test Page -> (https://sim.taksas.tech)
+
 SimcirJS-Web Copyright (c) 2021 taksas (URL: https://taksas.tech/).
  The original version of this project is "SimcirJS" (https://kazuhikoarase.github.io/simcirjs/). 
- I have made some small additions and layout changes.
+ I have made some small additions and layout changes. There are no additional functions to make it a web app.
 
 Licensed under the MIT license:http://www.opensource.org/licenses/mit-license.php
 
