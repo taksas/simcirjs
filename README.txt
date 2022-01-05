@@ -28,7 +28,6 @@ Web browser that supports HTML5 (Full HD or higher resolution is recommended.)
 -- Contents
 
 README.txt           -- this file
-jquery-2.1.1.min.js  -- jQuery javascript (required)
 simcir.js            -- Simcir core javascript (required)
 simcir.css           -- Simcir core stylesheet (required)
 simcir-basicset.js   -- Simcir basicset javascript (optional)
@@ -37,4 +36,5 @@ simcir-library.js    -- Simcir library javascript
                         (optional, requires basicset)
 sample.html          -- sample of live circuit
 blank.html           -- blank template
-index.html           -- sample that get and set a circuit directly (renamed from " get_and_set.html ".)
+index.html           -- sample that get and set a circuit directly with jQuery 
+                        (renamed from " get_and_set.html ".)
