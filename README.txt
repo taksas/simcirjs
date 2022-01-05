@@ -34,7 +34,5 @@ simcir-basicset.js   -- Simcir basicset javascript (optional)
 simcir-basicset.css  -- Simcir basicset stylesheet (optional)
 simcir-library.js    -- Simcir library javascript
                         (optional, requires basicset)
-sample.html          -- sample of live circuit
-blank.html           -- blank template
 index.html           -- sample that get and set a circuit directly with jQuery 
                         (renamed from " get_and_set.html ".)
